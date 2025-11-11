@@ -9,6 +9,8 @@ const settingsForm = document.getElementById("settings-form");
 const settingsBtn = document.getElementById("settings-btn");
 const difficultySelect = document.getElementById("difficulty");
 
+let RandomWord; 
+
 // Array
 const words = [
   "dependent",
@@ -32,13 +34,61 @@ const words = [
   "north",
 ];
 
-//Initializing word
-let randomWord;
-
+//Update the word element with random item from array
+function addWordtoDOM() {
+  randomWord = words[Math.floor(Math.random() * words.length)]
+  word.innerText = randomWord;
+}
+//Right answer => new word + increase score
+text.addEventListener ("input", function (){
+    if (text.value == randomWord) {
+    text.value = "";
+    addWordtoDOM()
+    increaseScore();
+  }
+} );
+//Update score function that will increase score by 1
 //Initializing score
 let score = 0;
+function increaseScore() {
+  score = score + 1;
+  scoreEl.innerText = score;
+}
 
-//Initializing time
-let time = 10;
+//Even listener to the text-element. It should
+  //1. Call updateScore   
+  //2. give the user a new word by calling addWordToDOM  
+  //3. increment time by 5 seconds   
+  //4. reset the input to empty string  
+
+
 
 //Start
+function getNextWord(){
+  console.log(word)
+}
+
+console.log(addWordtoDOM)
+
+//PART TWO
+//Initializing time
+const startingTime = 9;
+let time = startingTime;
+const countdownEl = document.getElementById('time');
+
+function uppdateTime () {
+  let seconds = time % 60;
+
+  countdownEl.innerHTML = `${seconds}`;
+  time --;
+  if (seconds <= 0) {
+
+  }
+    
+  }
+
+  //Run scripts
+
+  setInterval(uppdateTime, 1000);
+  clearTimeout();
+  addWordtoDOM();
