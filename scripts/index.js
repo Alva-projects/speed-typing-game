@@ -40,3 +40,5 @@ let score = 0;
 
 //Initializing time
 let time = 10;
+
+//Start
