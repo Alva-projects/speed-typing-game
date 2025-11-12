@@ -9,7 +9,6 @@ const settingsForm = document.getElementById("settings-form");
 const settingsBtn = document.getElementById("settings-btn");
 const difficultySelect = document.getElementById("difficulty");
 
-let randomWord; 
 
 // Array
 const words = [
@@ -33,6 +32,8 @@ const words = [
   "loving",
   "north",
 ];
+
+let randomWord; 
 
 //Update the word element with random item from array
 function addWordtoDOM() {
@@ -65,27 +66,26 @@ function getNextWord(){
   console.log(word)
 }
 
-console.log(addWordtoDOM)
-
 //PART TWO
 //Initializing time
 const startingTime = 9;
 let time = startingTime;
 const countdownEl = document.getElementById('time');
 
-setInterval(function() {
+const timer = setInterval(function() {
   let seconds = time % 60;
   countdownEl.innerHTML = `${seconds}`;
   time --;
 
-  if (time <= 0) {
-    endgameEl.innerHTML = "Game over";
+  if (time < 0) {
+    endgameEl.textContent = "Game over";
+    clearInterval(timer);
   }
 }, 1000);
 
   //Run scripts
-
-  setInterval(updateTime, 1000);
   addWordtoDOM();
+  setInterval(updateTime, 1000);
   clearInterval();
 
+//To do: Add 5 sec per right answer
