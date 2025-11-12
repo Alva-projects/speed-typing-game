@@ -46,6 +46,7 @@ text.addEventListener ("input", function (){
     text.value = "";
     addWordtoDOM()
     increaseScore();
+    time += 1;
   }
 } );
 //Score
