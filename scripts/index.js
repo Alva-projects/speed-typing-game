@@ -52,7 +52,7 @@ text.addEventListener ("input", function (){
 //Score
 let score = 0;
 function increaseScore() {
-  score = score + 1;
+  score = score + 2;
   scoreEl.innerText = score;
 }
 
