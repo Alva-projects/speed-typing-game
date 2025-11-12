@@ -9,7 +9,7 @@ const settingsForm = document.getElementById("settings-form");
 const settingsBtn = document.getElementById("settings-btn");
 const difficultySelect = document.getElementById("difficulty");
 
-let RandomWord; 
+let randomWord; 
 
 // Array
 const words = [
@@ -47,8 +47,7 @@ text.addEventListener ("input", function (){
     increaseScore();
   }
 } );
-//Update score function that will increase score by 1
-//Initializing score
+//Score
 let score = 0;
 function increaseScore() {
   score = score + 1;
@@ -60,8 +59,6 @@ function increaseScore() {
   //2. give the user a new word by calling addWordToDOM  
   //3. increment time by 5 seconds   
   //4. reset the input to empty string  
-
-
 
 //Start
 function getNextWord(){
@@ -76,19 +73,19 @@ const startingTime = 9;
 let time = startingTime;
 const countdownEl = document.getElementById('time');
 
-function uppdateTime () {
+setInterval(function() {
   let seconds = time % 60;
-
   countdownEl.innerHTML = `${seconds}`;
   time --;
-  if (seconds <= 0) {
 
+  if (time <= 0) {
+    endgameEl.innerHTML = "Game over";
   }
-    
-  }
+}, 1000);
 
   //Run scripts
 
-  setInterval(uppdateTime, 1000);
-  clearTimeout();
+  setInterval(updateTime, 1000);
   addWordtoDOM();
+  clearInterval();
+
