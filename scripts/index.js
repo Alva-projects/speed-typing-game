@@ -46,7 +46,7 @@ text.addEventListener ("input", function (){
     text.value = "";
     addWordtoDOM()
     increaseScore();
-    time += 1;
+    time += 5;
   }
 } );
 //Score
@@ -55,7 +55,6 @@ function increaseScore() {
   score = score + 2;
   scoreEl.innerText = score;
 }
-
 //Even listener to the text-element. It should
   //1. Call updateScore   
   //2. give the user a new word by calling addWordToDOM  
@@ -73,20 +72,25 @@ const startingTime = 9;
 let time = startingTime;
 const countdownEl = document.getElementById('time');
 
+let gameEnd = false;
+
 const timer = setInterval(function() {
+  if (gameEnd) return;
+
+  // Updating countdown
   let seconds = time % 60;
   countdownEl.innerHTML = `${seconds}`;
   time --;
 
   if (time < 0) {
+    gameEnd = true;
+    endgameEl.style.display = "flex";
     endgameEl.textContent = "Game over";
-    clearInterval(timer);
+
   }
 }, 1000);
 
   //Run scripts
   addWordtoDOM();
-  setInterval(updateTime, 1000);
-  clearInterval();
 
 //To do: Add 5 sec per right answer
